@@ -193,4 +193,15 @@ class PHPUnitDataProviderTest extends \PHPUnit_Framework_TestCase {
 		                                                                                             ->andReturn() );
 		$this->assertEquals( $expected, $out );
 	}
+
+	/**
+	 * @test
+	 * it should raise an exception if trying to merge array with a lower cardinality one
+	 */
+	public function it_should_raise_an_exception_if_trying_to_merge_array_with_a_lower_cardinality_one() {
+		$this->setExpectedException('InvalidArgumentException', 1);
+		$one = array(array(1), array(2), array(3));
+		$two = array(array(4), array(5));
+		PHPUnitDataProvider::merge($one)->with($two)->andReturn();
+	}
 }
