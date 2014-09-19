@@ -28,7 +28,7 @@ class PHPUnitDataProviderTest extends \PHPUnit_Framework_TestCase {
 	public function it_should_allow_appending_data_providing_methods_with_values( $value ) {
 		$in       = array( array( 'one' ), array( 'two' ), array( 'three' ) );
 		$expected = array( array( 'one', $value ), array( 'two', $value ), array( 'three', $value ) );
-		$out      = PHPUnitDataProvider::merge( $in )->append( $value )->andReturn();
+		$out      = PHPUnitDataProvider::merge( $in )->append( $value )->provide();
 		$this->assertEquals( $expected, $out );
 	}
 
@@ -56,7 +56,7 @@ class PHPUnitDataProviderTest extends \PHPUnit_Framework_TestCase {
 			array( 'two', $value1, $value2, $value3 ),
 			array( 'three', $value1, $value2, $value3 ) );
 		$out      = PHPUnitDataProvider::merge( $in )->append( $value1 )->append( $value2 )->append( $value3 )
-		                               ->andReturn();
+		                               ->provide();
 		$this->assertEquals( $expected, $out );
 	}
 
@@ -70,7 +70,7 @@ class PHPUnitDataProviderTest extends \PHPUnit_Framework_TestCase {
 			array( 'one', 'one', 'two', 'three' ),
 			array( 'two', '', 23, null ),
 			array( 'three', 'one', new stdClass(), 23 ) );
-		$out      = PHPUnitDataProvider::merge( $in )->with( $this->threeValues() )->andReturn();
+		$out      = PHPUnitDataProvider::merge( $in )->with( $this->threeValues() )->provide();
 		$this->assertEquals( $expected, $out );
 	}
 
@@ -85,7 +85,7 @@ class PHPUnitDataProviderTest extends \PHPUnit_Framework_TestCase {
 			array( 'two', '', 23, null, 23 ),
 			array( 'three', 'one', new stdClass(), 23, 23.23 ) );
 		$out      = PHPUnitDataProvider::merge( $in )->with( $this->threeValues() )->with( $this->valuesNotArray() )
-		                               ->andReturn();
+		                               ->provide();
 		$this->assertEquals( $expected, $out );
 	}
 
@@ -100,7 +100,7 @@ class PHPUnitDataProviderTest extends \PHPUnit_Framework_TestCase {
 			array( 'one', 'one', 'two', 'three', $value ),
 			array( 'two', '', 23, null, $value ),
 			array( 'three', 'one', new stdClass(), 23, $value ) );
-		$out      = PHPUnitDataProvider::merge( $in )->with( $this->threeValues() )->append( $value )->andReturn();
+		$out      = PHPUnitDataProvider::merge( $in )->with( $this->threeValues() )->append( $value )->provide();
 		$this->assertEquals( $expected, $out );
 	}
 
@@ -115,7 +115,7 @@ class PHPUnitDataProviderTest extends \PHPUnit_Framework_TestCase {
 			array( 'two', '', 23, null, 23, 46 ),
 			array( 'three', 'one', new stdClass(), 23, 23, 46 ) );
 		$out      = PHPUnitDataProvider::merge( $in )->with( $this->threeValues() )->append( array( 23, 46 ) )
-		                               ->andReturn();
+		                               ->provide();
 		$this->assertEquals( $expected, $out );
 	}
 
@@ -130,7 +130,7 @@ class PHPUnitDataProviderTest extends \PHPUnit_Framework_TestCase {
 			array( 23, 46, 'two', '', 23, null ),
 			array( 23, 46, 'three', 'one', new stdClass(), 23 ) );
 		$out      = PHPUnitDataProvider::merge( $in )->with( $this->threeValues() )->prepend( 46 )->prepend( 23 )
-		                               ->andReturn();
+		                               ->provide();
 		$this->assertEquals( $expected, $out );
 	}
 
@@ -145,7 +145,7 @@ class PHPUnitDataProviderTest extends \PHPUnit_Framework_TestCase {
 			array( 23, 46, 'two', '', 23, null ),
 			array( 23, 46, 'three', 'one', new stdClass(), 23 ) );
 		$out      = PHPUnitDataProvider::wrap( $in )->with( $this->threeValues() )->prepend( 46 )->prepend( 23 )
-		                               ->andReturn();
+		                               ->provide();
 		$this->assertEquals( $expected, $out );
 	}
 
@@ -156,7 +156,7 @@ class PHPUnitDataProviderTest extends \PHPUnit_Framework_TestCase {
 	public function it_should_return_wrapper_array_if_not_merging_appending_or_prepending_anything() {
 		$in       = array( 'one', 'two', 23 );
 		$expected = array( array( 'one' ), array( 'two' ), array( 23 ) );
-		$this->assertEquals( $expected, PHPUnitDataProvider::wrap( $in )->andReturn() );
+		$this->assertEquals( $expected, PHPUnitDataProvider::wrap( $in )->provide() );
 	}
 
 	/**
@@ -164,7 +164,7 @@ class PHPUnitDataProviderTest extends \PHPUnit_Framework_TestCase {
 	 * it should return PHPUnit data provided format array if not merging prepending and appending anything
 	 */
 	public function it_should_return_php_unit_data_provided_format_array_if_not_merging_prepending_and_appending_anything() {
-		$this->assertEquals( $this->threeValues(), PHPUnitDataProvider::merge( $this->threeValues() )->andReturn() );
+		$this->assertEquals( $this->threeValues(), PHPUnitDataProvider::merge( $this->threeValues() )->provide() );
 	}
 
 	/**
@@ -175,8 +175,8 @@ class PHPUnitDataProviderTest extends \PHPUnit_Framework_TestCase {
 		$one      = array( 1, 2, 3 );
 		$two      = array( 4, 5, 6 );
 		$expected = array( array( 1 ), array( 2 ), array( 3 ), array( 4 ), array( 5 ), array( 6 ) );
-		$out      = array_merge( PHPUnitDataProvider::wrap( $one )->andReturn(), PHPUnitDataProvider::wrap( $two )
-		                                                                                            ->andReturn() );
+		$out      = array_merge( PHPUnitDataProvider::wrap( $one )->provide(), PHPUnitDataProvider::wrap( $two )
+		                                                                                            ->provide() );
 		$this->assertEquals( $expected, $out );
 	}
 
@@ -188,8 +188,8 @@ class PHPUnitDataProviderTest extends \PHPUnit_Framework_TestCase {
 		$one      = array( array( 1 ), array( 2 ) );
 		$two      = array( array( 3 ), array( 4 ) );
 		$expected = array( array( 1 ), array( 2 ), array( 3 ), array( 4 ) );
-		$out      = array_merge( PHPUnitDataProvider::merge( $one )->andReturn(), PHPUnitDataProvider::merge( $two )
-		                                                                                             ->andReturn() );
+		$out      = array_merge( PHPUnitDataProvider::merge( $one )->provide(), PHPUnitDataProvider::merge( $two )
+		                                                                                             ->provide() );
 		$this->assertEquals( $expected, $out );
 	}
 
@@ -201,6 +201,6 @@ class PHPUnitDataProviderTest extends \PHPUnit_Framework_TestCase {
 		$this->setExpectedException( 'InvalidArgumentException', 1 );
 		$one = array( array( 1 ), array( 2 ), array( 3 ) );
 		$two = array( array( 4 ), array( 5 ) );
-		PHPUnitDataProvider::merge( $one )->with( $two )->andReturn();
+		PHPUnitDataProvider::merge( $one )->with( $two )->provide();
 	}
 }

@@ -42,7 +42,7 @@ After the first step the class provides chainable methods to create data provide
 
 >Note that the cardinality of the returned array will be the same as the one of the initial array and that arrays merged with the initial array must have a cardinality equal or superior to the initial array.
 
-The method <code>andReturn</code> will return the merged array.
+The method <code>provide</code> will return the merged array.
 
 ## Examples
 I want to test the <code>isOdd</code> method, usually I would write
@@ -101,18 +101,18 @@ using PHPUnitDataProvider I could re-use smaller data providers like
     public function valuesAndOddResponses(){
         return array_merge(
             PHPUnitDataProvider::wrap($this->oddValues)
-            ->append(true)->andReturn(),
+            ->append(true)->provide(),
             PHPUnitDataProvider::wrap($this->evenValues)
-            ->append(false)->andReturn()
+            ->append(false)->provide()
             );
     }
 
     public function valuesAndEvenResponses(){
     return array_merge(
         PHPUnitDataProvider::wrap($this->oddValues)
-        ->append(false)->andReturn(),
+        ->append(false)->provide(),
         PHPUnitDataProvider::wrap($this->evenValues)
-        ->append(true)->andReturn()
+        ->append(true)->provide()
         );
     }
 

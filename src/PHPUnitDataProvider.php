@@ -154,7 +154,7 @@ class PHPUnitDataProvider {
 	 * @return array The resulting merged array of arrays in
 	 *               the PHPUnit data provider format.
 	 */
-	public function andReturn() {
+	public function provide() {
 		return $this->out;
 	}
 
