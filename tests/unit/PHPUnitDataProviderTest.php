@@ -168,4 +168,24 @@ class PHPUnitDataProviderTest extends \PHPUnit_Framework_TestCase {
 		                               ->andReturn();
 		$this->assertEquals( $expected, $out );
 	}
+
+	/**
+	 * @test
+	 * it should return wrapper array if not merging appending or prepending anything
+	 */
+	public function it_should_return_wrapper_array_if_not_merging_appending_or_prepending_anything() {
+		$in       = array( 'one', 'two', 23 );
+		$expected = array( array( 'one' ), array( 'two' ), array( 23 ) );
+		$this->assertEquals( $expected, PHPUnitDataProvider::wrapAndMerge( $in )
+		                                                   ->andReturn() );
+	}
+
+	/**
+	 * @test
+	 * it should return PHPUnit data provided format array if not merging prepending and appending anything
+	 */
+	public function it_should_return_php_unit_data_provided_format_array_if_not_merging_prepending_and_appending_anything() {
+		$this->assertEquals( $this->threeValues(), PHPUnitDataProvider::merge( $this->threeValues() )
+		                                                              ->andReturn() );
+	}
 }

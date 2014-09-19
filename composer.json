@@ -1,6 +1,6 @@
 {
     "name": "lucatume/data-provider",
-    "description": "Easier data providers fro PHPUnit",
+    "description": "Easier data providers for PHPUnit",
     "license": "GPL 2",
     "authors": [
         {
