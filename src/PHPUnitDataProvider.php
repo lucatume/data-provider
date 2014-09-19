@@ -101,7 +101,7 @@ class PHPUnitDataProvider {
 	 * @return $this The calling instance to allow for method
 	 *               chaining.
 	 */
-	public function appending( $valueOrArray ) {
+	public function append( $valueOrArray ) {
 		$this->appendOrPrependValueOrArray( $valueOrArray, true );
 
 		return $this;
@@ -115,7 +115,7 @@ class PHPUnitDataProvider {
 	 * @return $this The calling instance to allow for method
 	 *               chaining.
 	 */
-	public function prepending( $valueOrArray ) {
+	public function prepend( $valueOrArray ) {
 		$this->appendOrPrependValueOrArray( $valueOrArray, false );
 
 		return $this;
