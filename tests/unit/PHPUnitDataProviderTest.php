@@ -144,7 +144,7 @@ class PHPUnitDataProviderTest extends \PHPUnit_Framework_TestCase {
 			array( 23, 46, 'one', 'one', 'two', 'three' ),
 			array( 23, 46, 'two', '', 23, null ),
 			array( 23, 46, 'three', 'one', new stdClass(), 23 ) );
-		$out      = PHPUnitDataProvider::wrapAndMerge( $in )->with( $this->threeValues() )->prepending( 46 )
+		$out      = PHPUnitDataProvider::wrap( $in )->with( $this->threeValues() )->prepending( 46 )
 		                               ->prepending( 23 )->andReturn();
 		$this->assertEquals( $expected, $out );
 	}
@@ -156,7 +156,7 @@ class PHPUnitDataProviderTest extends \PHPUnit_Framework_TestCase {
 	public function it_should_return_wrapper_array_if_not_merging_appending_or_prepending_anything() {
 		$in       = array( 'one', 'two', 23 );
 		$expected = array( array( 'one' ), array( 'two' ), array( 23 ) );
-		$this->assertEquals( $expected, PHPUnitDataProvider::wrapAndMerge( $in )->andReturn() );
+		$this->assertEquals( $expected, PHPUnitDataProvider::wrap( $in )->andReturn() );
 	}
 
 	/**
@@ -175,8 +175,8 @@ class PHPUnitDataProviderTest extends \PHPUnit_Framework_TestCase {
 		$one      = array( 1, 2, 3 );
 		$two      = array( 4, 5, 6 );
 		$expected = array( array( 1 ), array( 2 ), array( 3 ), array( 4 ), array( 5 ), array( 6 ) );
-		$out      = array_merge( PHPUnitDataProvider::wrapAndMerge( $one )
-		                                            ->andReturn(), PHPUnitDataProvider::wrapAndMerge( $two )
+		$out      = array_merge( PHPUnitDataProvider::wrap( $one )
+		                                            ->andReturn(), PHPUnitDataProvider::wrap( $two )
 		                                                                              ->andReturn() );
 		$this->assertEquals( $expected, $out );
 	}

@@ -67,7 +67,7 @@ class PHPUnitDataProvider {
 	 * @return lucatume\DataProvider\PHPUnitDataProvider
 	 * @throws BadMethodCallException
 	 */
-	public static function wrapAndMerge( $baseArray ) {
+	public static function wrap( $baseArray ) {
 		return self::initializeWith( $baseArray, true );
 	}
 
