@@ -29,6 +29,8 @@ Or go the slow, unreliable, error-prone way of manual installation downloading t
     ]
 
 ## Methods
+
+### Data building
 Once the package is safely in place it can be used calling its static access methods:
 
 * <code>merge</code> - will merge a PHPUnit data provider format array with other PHPUnit data provider format arrays, scalar values or strings.
@@ -43,6 +45,12 @@ After the first step the class provides chainable methods to create data provide
 >Note that the cardinality of the returned array will be the same as the one of the initial array and that arrays merged with the initial array must have a cardinality equal or superior to the initial array.
 
 The method <code>provide</code> will return the merged array.
+
+### Just data providers
+I've added data provider method to the class I might use and combine.
+
+* <code>falsyValues</code> - a set of single values each type casting ot <code>false</code>
+* <code>truthyValues</code> - a set of single values each type casting ot <code>true</code>
 
 ## Examples
 I want to test the <code>isOdd</code> method, usually I would write
