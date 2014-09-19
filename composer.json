@@ -1,0 +1,21 @@
+{
+    "name": "lucatume/data-provider",
+    "description": "Easier data providers fro PHPUnit",
+    "license": "GPL 2",
+    "authors": [
+        {
+            "name": "Luca Tumedei",
+            "email": "luca@theaveragedev.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "require-dev": {
+        "codeception/codeception": "2.*"
+    },
+	"autoload":{
+		"psr-4": {
+			"lucatume\\DataProvider\\": ["src/"]
+		}
+	}
+}
