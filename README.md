@@ -81,7 +81,7 @@ I want to test the <code>isOdd</code> method, usually I would write
     /**
      * @dataProvider valuesAndEvenResponses
      */
-    public function testIsOdd($value, $response){
+    public function testIsEven($value, $response){
         $sut = new SomeClass();
         $this->assertEquals($response, $sut->isEven($value));
     }
